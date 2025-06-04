@@ -30,3 +30,4 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/main/java/com/allen/agent/consts/TestApiKey.java
