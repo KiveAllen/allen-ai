@@ -10,7 +10,6 @@ import org.springframework.ai.chat.client.advisor.api.Advisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
@@ -26,9 +25,6 @@ public class LoveApp {
             "引导用户详述事情经过、对方反应及自身想法，以便给出专属解决方案。";
 
     private final ChatClient chatClient;
-
-    @Resource
-    private VectorStore loveAppVectorStore;
 
     @Resource
     private Advisor loveAppRagCloudAdvisor;
@@ -60,7 +56,10 @@ public class LoveApp {
                 .advisors(loveAppRagCloudAdvisor)
                 .call()
                 .chatResponse();
-        String content = chatResponse.getResult().getOutput().getText();
+        String content = null;
+        if (chatResponse != null) {
+            content = chatResponse.getResult().getOutput().getText();
+        }
         log.info("doChatWithRag content: {}", content);
         return content;
     }
@@ -73,7 +72,10 @@ public class LoveApp {
                         .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
                 .call()
                 .chatResponse();
-        String content = response.getResult().getOutput().getText();
+        String content = null;
+        if (response != null) {
+            content = response.getResult().getOutput().getText();
+        }
         log.info("doChat content: {}", content);
         return content;
     }
