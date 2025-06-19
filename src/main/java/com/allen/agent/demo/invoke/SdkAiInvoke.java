@@ -12,7 +12,6 @@ import com.alibaba.dashscope.exception.ApiException;
 import com.alibaba.dashscope.exception.InputRequiredException;
 import com.alibaba.dashscope.exception.NoApiKeyException;
 import com.alibaba.dashscope.utils.JsonUtils;
-import com.allen.agent.consts.TestApiKey;
 
 public class SdkAiInvoke {
 

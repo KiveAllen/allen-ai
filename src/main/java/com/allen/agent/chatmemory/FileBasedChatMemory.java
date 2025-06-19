@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class FileBasedChatMemory implements ChatMemory {
 
+    private final String BASE_DIR;
     private static final Kryo kryo = new Kryo();
 
     static {
@@ -26,8 +27,6 @@ public class FileBasedChatMemory implements ChatMemory {
         // 设置实例化策略
         kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
     }
-
-    private final String BASE_DIR;
 
     // 构造对象时，指定文件保存目录
     public FileBasedChatMemory(String dir) {

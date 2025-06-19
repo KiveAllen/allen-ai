@@ -1,6 +1,5 @@
 package com.allen.agent.demo.invoke;
 
-import com.allen.agent.consts.TestApiKey;
 import dev.langchain4j.community.model.dashscope.QwenChatModel;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 
