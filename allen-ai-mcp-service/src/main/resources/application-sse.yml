@@ -1,0 +1,12 @@
+spring:
+  ai:
+    mcp:
+      server:
+        name: mcp-server
+        version: 0.0.1
+        type: SYNC
+        # sse
+        stdio: false
+server:
+  tomcat:
+    connection-timeout: 180000 # Set Tomcat connection timeout to 180,000 milliseconds (3 minutes)

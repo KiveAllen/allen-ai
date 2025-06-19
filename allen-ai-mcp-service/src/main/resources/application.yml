@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: mcp-server
+  profiles:
+    active: sse
+server:
+  port: 8127
