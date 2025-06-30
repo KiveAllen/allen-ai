@@ -29,7 +29,7 @@
     <properties>
         <java.version>21</java.version>
     </properties>
-   <dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -59,11 +59,11 @@
             <version>1.0.0-beta2</version>
         </dependency>
         <!-- 支持结构化输出 -->
-<!--        <dependency>-->
-<!--            <groupId>com.github.victools</groupId>-->
-<!--            <artifactId>jsonschema-generator</artifactId>-->
-<!--            <version>4.38.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-generator</artifactId>
+            <version>4.38.0</version>
+        </dependency>
         <!-- 支持文件会话记忆持久化的序列化 -->
         <dependency>
             <groupId>com.esotericsoftware</groupId>
@@ -80,20 +80,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-       <!-- PDF 生成库 -->
-       <!-- https://mvnrepository.com/artifact/com.itextpdf/itext-core -->
-       <dependency>
-           <groupId>com.itextpdf</groupId>
-           <artifactId>itext-core</artifactId>
-           <version>9.1.0</version>
-           <type>pom</type>
-       </dependency>
-       <!-- jsoup HTML 解析库 -->
-       <dependency>
-           <groupId>org.jsoup</groupId>
-           <artifactId>jsoup</artifactId>
-           <version>1.19.1</version>
-       </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -104,39 +90,39 @@
             <artifactId>spring-ai-pgvector-store</artifactId>
             <version>1.0.0-M6</version>
         </dependency>
-<!--        &lt;!&ndash; 自动整合 PGVector 向量存储 &ndash;&gt;-->
+        <!-- 自动整合 PGVector 向量存储 -->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.ai</groupId>-->
 <!--            <artifactId>spring-ai-starter-vector-store-pgvector</artifactId>-->
 <!--            <version>1.0.0-M7</version>-->
 <!--        </dependency>-->
-<!--        &lt;!&ndash; Spring AI MCP Client &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.ai</groupId>-->
-<!--            <artifactId>spring-ai-mcp-client-spring-boot-starter</artifactId>-->
-<!--            <version>1.0.0-M6</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; jsoup HTML 解析库 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.jsoup</groupId>-->
-<!--            <artifactId>jsoup</artifactId>-->
-<!--            <version>1.19.1</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; PDF 生成库 &ndash;&gt;-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.itextpdf/itext-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.itextpdf</groupId>-->
-<!--            <artifactId>itext-core</artifactId>-->
-<!--            <version>9.1.0</version>-->
-<!--            <type>pom</type>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.itextpdf/font-asian &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.itextpdf</groupId>-->
-<!--            <artifactId>font-asian</artifactId>-->
-<!--            <version>9.1.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!-- Spring AI MCP Client -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-mcp-client-spring-boot-starter</artifactId>
+            <version>1.0.0-M6</version>
+        </dependency>
+        <!-- jsoup HTML 解析库 -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+        <!-- PDF 生成库 -->
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itext-core -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-core</artifactId>
+            <version>9.1.0</version>
+            <type>pom</type>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/font-asian -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>font-asian</artifactId>
+            <version>9.1.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -159,17 +145,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
 
     <build>
         <plugins>
@@ -201,4 +176,15 @@
         </plugins>
     </build>
 
+    <!-- 需要引入仓库配置，才能下载到最新的 Spring AI 相关的依赖 -->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

@@ -33,7 +33,9 @@ public class PgVectorVectorStoreConfig {
                 .build();
         // 加载文档
         List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
-        vectorStore.add(documents);
+
+//        // 添加文档进入向量数据库
+//        vectorStore.add(documents);
         return vectorStore;
     }
 }

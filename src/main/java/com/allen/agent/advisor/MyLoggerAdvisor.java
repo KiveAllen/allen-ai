@@ -12,45 +12,45 @@ import reactor.core.publisher.Flux;
 @Slf4j
 public class MyLoggerAdvisor implements CallAroundAdvisor, StreamAroundAdvisor {
 
-	@Override
-	public String getName() {
-		return this.getClass().getSimpleName();
-	}
+    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
 
-	@Override
-	public int getOrder() {
-		return 0;
-	}
+    @Override
+    public int getOrder() {
+        return 0;
+    }
 
-	private AdvisedRequest before(AdvisedRequest request) {
-		log.info("AI Request: {}", request.userText());
-		return request;
-	}
+    private AdvisedRequest before(AdvisedRequest request) {
+        log.info("AI Request: {}", request.userText());
+        return request;
+    }
 
-	private void observeAfter(AdvisedResponse advisedResponse) {
-		log.info("AI Response: {}", advisedResponse.response().getResult().getOutput().getText());
-	}
+    private void observeAfter(AdvisedResponse advisedResponse) {
+        log.info("AI Response: {}", advisedResponse.response().getResult().getOutput().getText());
+    }
 
-	@Override
-	public AdvisedResponse aroundCall(AdvisedRequest advisedRequest, CallAroundAdvisorChain chain) {
+    @Override
+    public AdvisedResponse aroundCall(AdvisedRequest advisedRequest, CallAroundAdvisorChain chain) {
 
-		advisedRequest = before(advisedRequest);
+        advisedRequest = before(advisedRequest);
 
-		AdvisedResponse advisedResponse = chain.nextAroundCall(advisedRequest);
+        AdvisedResponse advisedResponse = chain.nextAroundCall(advisedRequest);
 
-		observeAfter(advisedResponse);
+        observeAfter(advisedResponse);
 
-		return advisedResponse;
-	}
+        return advisedResponse;
+    }
 
-	@Override
-	public Flux<AdvisedResponse> aroundStream(AdvisedRequest advisedRequest, StreamAroundAdvisorChain chain) {
+    @Override
+    public Flux<AdvisedResponse> aroundStream(AdvisedRequest advisedRequest, StreamAroundAdvisorChain chain) {
 
-		advisedRequest = before(advisedRequest);
+        advisedRequest = before(advisedRequest);
 
-		Flux<AdvisedResponse> advisedResponses = chain.nextAroundStream(advisedRequest);
+        Flux<AdvisedResponse> advisedResponses = chain.nextAroundStream(advisedRequest);
 
-		return new MessageAggregator().aggregateAdvisedResponse(advisedResponses, this::observeAfter);
-	}
+        return new MessageAggregator().aggregateAdvisedResponse(advisedResponses, this::observeAfter);
+    }
 
 }

@@ -7,16 +7,17 @@ import org.springframework.ai.tool.ToolCallback;
 import org.springframework.stereotype.Component;
 
 /**
- * 鱼皮的 AI 超级智能体（拥有自主规划能力，可以直接使用）
+ * Allen的 AI 超级智能体（拥有自主规划能力，可以直接使用）
  */
 @Component
 public class AllenManus extends ToolCallAgent {
 
+    // chatModel的名字必须为dashscope, 这个是阿里云的chatModel
     public AllenManus(ToolCallback[] allTools, ChatModel dashscopeChatModel) {
         super(allTools);
         this.setName("allenManus");
         String SYSTEM_PROMPT = """
-                You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user.
+                You are allenManus, an all-capable AI assistant, aimed at solving any task presented by the user.
                 You have various tools at your disposal that you can call upon to efficiently complete complex requests.
                 """;
         this.setSystemPrompt(SYSTEM_PROMPT);
