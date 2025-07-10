@@ -8,16 +8,24 @@ spring:
     username: postgres
     password: 123456
   ai:
-    vectorstore:
-      pgvector:
-        index-type: HNSW
-        dimensions: 1536
-        distance-type: COSINE_DISTANCE
-        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+    #    vectorstore:
+    #      pgvector:
+    #        index-type: HNSW
+    #        dimensions: 1536
+    #        distance-type: COSINE_DISTANCE
+    #        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
     ollama:
       base-url: http://localhost:11434
       chat:
         model: gemma3:1b
+    mcp:
+      client:
+        toolcallback:
+          enabled: true
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8127
 #    dashscope:
 #      api-key: 填入自己的密钥
 #      chat:

@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import com.allen.agent.agent.model.AgentState;
+import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.model.tool.ToolCallingManager;
 import org.springframework.ai.model.tool.ToolExecutionResult;
 import org.springframework.ai.tool.ToolCallback;
+import org.springframework.ai.tool.ToolCallbackProvider;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +33,10 @@ public class ToolCallAgent extends ReActAgent {
 
     // 可用的工具
     private final ToolCallback[] availableTools;
+
+    // 可用的mcp工具
+    @Resource
+    private ToolCallbackProvider allMcpTools;
 
     // 工具调用管理者
     private final ToolCallingManager toolCallingManager;
@@ -47,7 +53,7 @@ public class ToolCallAgent extends ReActAgent {
         this.toolCallingManager = ToolCallingManager.builder().build();
         // 禁用 Spring AI 内置的工具调用机制，自己维护选项和消息上下文
         this.chatOptions = DashScopeChatOptions.builder()
-                .withProxyToolCalls(true)
+                .withInternalToolExecutionEnabled(false)
                 .build();
     }
 
@@ -74,7 +80,8 @@ public class ToolCallAgent extends ReActAgent {
             // 调用大模型
             ChatResponse chatResponse = getChatClient().prompt(prompt)
                     .system(getSystemPrompt())
-                    .tools(availableTools)
+                    .toolCallbacks(availableTools)
+                    .toolCallbacks(allMcpTools)
                     .call()
                     .chatResponse();
             // 记录响应，用于等下 Act
