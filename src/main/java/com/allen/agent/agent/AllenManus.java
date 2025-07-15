@@ -1,9 +1,12 @@
 package com.allen.agent.agent;
 
 import com.allen.agent.advisor.MyLoggerAdvisor;
+import com.allen.agent.advisor.ReReadingAdvisor;
+import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.tool.ToolCallback;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +14,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AllenManus extends ToolCallAgent {
+
+    @Resource
+    private ToolCallbackProvider allMcpTools;
 
     // chatModel的名字必须为dashscope, 这个是阿里云的chatModel
     public AllenManus(ToolCallback[] allTools, ChatModel dashscopeChatModel) {
@@ -32,6 +38,8 @@ public class AllenManus extends ToolCallAgent {
         // 初始化 AI 对话客户端
         ChatClient chatClient = ChatClient.builder(dashscopeChatModel)
                 .defaultAdvisors(new MyLoggerAdvisor())
+                .defaultAdvisors(new ReReadingAdvisor())
+                .defaultToolCallbacks(allMcpTools)
                 .build();
         this.setChatClient(chatClient);
     }
