@@ -2,8 +2,7 @@
   <div class="chat-container">
     <NavBar />
     <div class="chat-header">
-      <h2>AI 恋爱大师</h2>
-      <div>聊天ID: {{ chatId }}</div>
+      <h2>AI 超级智能体</h2>
     </div>
     <div class="chat-messages" ref="messagesContainer">
       <div 
@@ -28,21 +27,18 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import { chatWithLoveAppSSE, generateChatId } from '../api'
+import { chatWithManus } from '../api/index.js'
 import NavBar from '../components/NavBar.vue'
 
 const messages = ref([])
 const userInput = ref('')
 const messagesContainer = ref(null)
-const chatId = ref('')
 let eventSource = null
 
-// 初始化聊天ID
+// 初始化欢迎消息
 onMounted(() => {
-  chatId.value = generateChatId()
-  // 添加AI欢迎消息
   messages.value.push({
-    content: '你好！我是AI恋爱大师，有什么恋爱问题需要咨询吗？',
+    content: '你好！我是AI超级智能体，有什么我可以帮助你的吗？',
     isUser: false
   })
 })
@@ -83,7 +79,7 @@ const sendMessage = () => {
   }
   
   // 创建新的SSE连接
-  eventSource = chatWithLoveAppSSE(userMessage, chatId.value)
+  eventSource = chatWithManus(userMessage)
   
   // 创建AI消息占位
   const aiMessageIndex = messages.value.length
