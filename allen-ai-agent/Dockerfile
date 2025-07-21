@@ -3,7 +3,7 @@ FROM maven:3.9-amazoncorretto-21
 WORKDIR /app
 
 # 只复制必要的源代码和配置文件
-COPY pom.xml .
+COPY ../pom.xml .
 COPY src ./src
 
 # 使用 Maven 执行打包

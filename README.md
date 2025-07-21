@@ -1,103 +1,27 @@
-# Allen-AI-Agent
+# Allen-AI 简介
 
-[![构建状态](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/KiveAllen/allen-ai-agent/actions)
-[![许可证](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
-
-> 基于 Spring Boot 与 AI 技术的智能对话代理系统，支持多种 AI 调用、聊天记忆、文档增强检索（RAG）等能力，适合个性化对话机器人开发。
-
----
-
-## 目录
-- [项目简介](#项目简介)
-- [核心功能](#核心功能)
-- [项目结构](#项目结构)
-- [快速开始](#快速开始)
-- [优化建议](#优化建议)
-- [监控与可观测性](#监控与可观测性)
-- [许可证](#许可证)
+Allen-AI 是一个多模块智能对话系统项目，包含：
+- **allen-ai-agent**：后端主服务（Spring Boot，含前端源码）[→ 说明](./allen-ai-agent/README.md)
+- **allen-ai-mcp-service**：AI 工具服务（Java，独立 Spring Boot 应用）
 
 ---
 
-## 项目简介
-Allen-AI-Agent 致力于打造高可用、可扩展的智能对话系统，集成本地缓存、AI 多模型调用、文档增强检索（RAG）等技术，适用于多场景的对话机器人。
+## 目录结构
 
-## 核心功能
-- 🤖 **多模型 AI 对话**：支持 HTTP、SDK、LangChain、Ollama 等多种 AI 调用方式，轻松扩展新模型。
-- 💾 **聊天记忆持久化**：支持文件存储聊天记录，便于轻量级部署，可扩展为 Redis 或数据库。
-- 📄 **文档增强检索（RAG）**：加载本地文档，结合向量数据库实现语义检索，提升问答准确性。
-- 📝 **AOP 方法日志**：基于 Spring AOP 实现方法级日志，便于调试与性能分析。
-- 🧩 **模块化设计**：分层清晰，易于扩展和维护。
-
-## 项目结构
 ```
-allen-ai-agent/
-├── allen-ai-agent-frontend/           # 前端项目（Vue3 + Vite）
-│   ├── src/
-│   │   ├── api/                      # 前端 API 封装
-│   │   ├── components/               # 公共组件
-│   │   ├── router/                   # 路由配置
-│   │   ├── views/                    # 页面视图
-│   │   ├── App.vue                   # 入口组件
-│   │   └── main.js                   # 入口文件
-│   └── public/                       # 静态资源
+allen-ai/
+├── allen-ai-agent/                  # 后端主服务（Spring Boot，含前端源码）
+│   ├── src/main/java/com/allen/agent/
+│   ├── src/main/resources/allen-ai-agent-frontend/
+│   ├── src/main/resources/document/
+│   ├── application.yml
+│   └── ...
 │
-├── allen-ai-mcp-service/              # AI 工具服务（Java）
+├── allen-ai-mcp-service/            # AI 工具服务（Java，独立 Spring Boot 应用）
 │   ├── src/main/java/com/allen/mcpService/
-│   │   ├── tools/                    # AI 工具类（如图片搜索）
-│   │   └── AllenAiMcpServiceApplication.java
-│   └── src/main/resources/           # 配置文件
+│   ├── src/main/resources/
+│   └── ...
 │
-├── src/main/java/com/allen/agent/     # 后端主服务
-│   ├── advisor/                      # AOP 切面
-│   ├── agent/                        # 智能体核心
-│   ├── app/                          # 业务应用（如 LoveApp）
-│   ├── chatmemory/                   # 聊天记忆模块
-│   ├── config/                       # 配置类
-│   ├── constant/                     # 常量定义
-│   ├── controller/                   # REST API 控制器
-│   ├── demo/                         # AI 调用与 RAG 示例
-│   ├── rag/                          # 文档加载与向量存储
-│   ├── tools/                        # 工具类
-│   └── AllenAiAgentApplication.java  # 启动类
-│
-├── src/main/resources/
-│   ├── application.yml               # 主配置文件
-│   └── document/                     # RAG 文档
-│
-├── test/                             # 单元测试
-│
-├── tmp/                              # 临时文件、生成内容
-│
-├── README.md                         # 项目说明
-└── pom.xml                           # Maven 配置
+├── pom.xml                          # 项目聚合 Maven 配置
+└── README.md                        # 目录说明（本文件）
 ```
-
-## 快速开始
-1. 安装 JDK 17+、Maven 3.8+，建议使用 IntelliJ IDEA。
-2. 克隆项目并安装依赖：
-   ```bash
-   git clone https://github.com/KiveAllen/allen-ai-agent.git
-   cd allen-ai-agent
-   mvn clean install
-   ```
-3. 配置 `src/main/resources/application.yml`，填写 AI Key、RAG 文档路径等参数。
-4. 启动后端服务：
-   ```bash
-   mvn spring-boot:run
-   ```
-5. 访问健康检查接口：`http://localhost:8080/health`
-6. 前端目录下可独立启动 Vue3 前端（如需）。
-
-## 优化建议
-- 引入 Redis 缓存高频 AI 回答
-- 使用异步调用提升并发能力
-- 聊天记忆可扩展为数据库或内存映射文件
-- RAG 查询结果可做缓存，提升检索效率
-
-## 监控与可观测性
-- 可集成 Prometheus + Grafana 实现指标监控
-- 日志可输出至 ELK 等日志中心
-- 异常处理机制可持续完善
-
-## 许可证
-MIT License
