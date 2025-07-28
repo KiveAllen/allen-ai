@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.allen</groupId>
-    <artifactId>allen-ai-mcp-service</artifactId>
+    <artifactId>allen-ai-agent-mcp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>allen-ai-mcp-service</name>
-    <description>allen-ai-mcp-service</description>
+    <name>allen-ai-agent-mcp</name>
+    <description>allen-ai-agent-mcp</description>
     <url/>
     <licenses>
         <license/>

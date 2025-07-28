@@ -31,7 +31,7 @@ Allen-AI-Agent 致力于打造高可用、可扩展的智能对话系统，集�
 ## 项目结构
 ```
 allen-ai-agent/
-├── allen-ai-mcp-service/                  # AI 工具服务（Java）
+├── allen-ai-agent-mcp/                  # AI 工具服务（Java）
 │   ├── src/main/java/com/allen/mcpService/
 │   │   ├── tools/                        # AI 工具类（如图片搜索）
 │   │   └── AllenAiMcpServiceApplication.java
@@ -64,7 +64,6 @@ allen-ai-agent/
 │       │   └── main.js                   # 入口文件
 │       └── public/                       # 静态资源
 │
-├── allen-ai-mcp-service/pom.xml          # AI 工具服务 Maven 配置
 ├── pom.xml                               # 主 Maven 配置
 ├── Dockerfile                            # Docker 构建文件
 ├── README.md                             # 项目说明

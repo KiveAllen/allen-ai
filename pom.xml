@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>allen-ai-agent</module>
-        <module>allen-ai-mcp-service</module>
+        <module>allen-ai-agent/allen-ai-agent-mcp</module>
     </modules>
     <name>allen-ai</name>
     <description>allen-ai</description>

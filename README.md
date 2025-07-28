@@ -2,7 +2,7 @@
 
 Allen-AI 是一个多模块智能对话系统项目，包含：
 - **allen-ai-agent**：后端主服务（Spring Boot，含前端源码）[→ 说明](./allen-ai-agent/README.md)
-- **allen-ai-mcp-service**：AI 工具服务（Java，独立 Spring Boot 应用）
+- **allen-ai-agent-mcp**：AI 工具服务（Java，独立 Spring Boot 应用）
 
 ---
 
@@ -15,11 +15,7 @@ allen-ai/
 │   ├── src/main/resources/allen-ai-agent-frontend/
 │   ├── src/main/resources/document/
 │   ├── application.yml
-│   └── ...
-│
-├── allen-ai-mcp-service/            # AI 工具服务（Java，独立 Spring Boot 应用）
-│   ├── src/main/java/com/allen/mcpService/
-│   ├── src/main/resources/
+│   ├── allen-ai-agent-mcp/         # AI 工具服务（Java，独立 Spring Boot 应用）
 │   └── ...
 │
 ├── pom.xml                          # 项目聚合 Maven 配置
