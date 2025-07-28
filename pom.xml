@@ -9,6 +9,7 @@
     <modules>
         <module>allen-ai-agent</module>
         <module>allen-ai-agent/allen-ai-agent-mcp</module>
+        <module>allen-ai-codeGen</module>
     </modules>
     <name>allen-ai</name>
     <description>allen-ai</description>
