@@ -16,6 +16,7 @@
           mode="horizontal"
           :items="menuItems"
           class="header-menu"
+          @click="handleMenuClick"
         />
       </div>
 
@@ -43,26 +44,32 @@ const selectedKeys = ref<string[]>(['home'])
 // 菜单配置
 const menuItems = [
   {
-    key: 'home',
+    key: '/',
     label: '首页',
-    onClick: () => router.push('/')
   },
   {
-    key: 'about',
+    key: '/about',
     label: '关于',
-    onClick: () => router.push('/about')
   },
   {
-    key: 'projects',
+    key: '/projects',
     label: '项目',
-    onClick: () => router.push('/projects')
   },
   {
-    key: 'contact',
+    key: '/contact',
     label: '联系',
-    onClick: () => router.push('/contact')
-  }
+  },
 ]
+
+// 处理菜单点击
+const handleMenuClick: MenuProps['onClick'] = (e) => {
+  const key = e.key as string
+  selectedKeys.value = [key]
+  // 跳转到对应页面
+  if (key.startsWith('/')) {
+    router.push(key)
+  }
+}
 
 // 处理登录
 const handleLogin = () => {
@@ -138,11 +145,11 @@ const handleLogin = () => {
   .header-container {
     padding: 0 16px;
   }
-  
+
   .site-title {
     font-size: 16px;
   }
-  
+
   .header-center {
     display: none;
   }
@@ -152,14 +159,14 @@ const handleLogin = () => {
   .logo-container {
     gap: 8px;
   }
-  
+
   .logo {
     width: 28px;
     height: 28px;
   }
-  
+
   .site-title {
     font-size: 14px;
   }
 }
-</style> 
+</style>
