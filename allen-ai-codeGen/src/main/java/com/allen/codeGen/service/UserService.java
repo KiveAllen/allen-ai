@@ -1,9 +1,14 @@
 package com.allen.codeGen.service;
 
+import com.allen.codeGen.model.dto.user.UserQueryRequest;
 import com.allen.codeGen.model.entity.User;
 import com.allen.codeGen.model.vo.user.LoginUserVO;
+import com.allen.codeGen.model.vo.user.UserVO;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 /**
  * 用户 服务层。
@@ -55,6 +60,29 @@ public interface UserService extends IService<User> {
      */
     boolean userLogout(HttpServletRequest request);
 
+    /**
+     * 获取脱敏的用户信息
+     *
+     * @param user 用户
+     * @return 脱敏的用户信息
+     */
+    UserVO getUserVO(User user);
+
+    /**
+     * 获取脱敏的用户信息列表
+     *
+     * @param userList 用户列表
+     * @return 脱敏的用户信息列表
+     */
+    List<UserVO> getUserVOList(List<User> userList);
+
+    /**
+     * 获取查询条件
+     *
+     * @param userQueryRequest 用户查询条件
+     * @return 查询条件
+     */
+    QueryWrapper getQueryWrapper(UserQueryRequest userQueryRequest);
 
     /**
      * 获取加密密码
