@@ -37,6 +37,7 @@
 import { ref } from 'vue'
 import { UserOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
+import type { MenuProps } from 'ant-design-vue'
 
 const router = useRouter()
 const selectedKeys = ref<string[]>(['home'])
