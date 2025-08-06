@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import BasicLayout from '@/layouts/BasicLayout.vue'
+
+import { useLoginUserStore } from '@/stores/loginUser.ts'
+
+const loginUserStore = useLoginUserStore()
+loginUserStore.fetchLoginUser()
 </script>
 
 <template>
@@ -15,7 +20,8 @@ import BasicLayout from '@/layouts/BasicLayout.vue'
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
 }
