@@ -26,11 +26,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { userLogin } from '@/api/userController.ts'
-import { useLoginUserStore } from '@/stores/loginUser.ts'
-import { useRouter } from 'vue-router'
-import { message } from 'ant-design-vue'
+import {reactive} from 'vue'
+import {userLogin} from '@/api/userController.ts'
+import {useLoginUserStore} from '@/stores/loginUser.ts'
+import {useRouter} from 'vue-router'
+import {message} from 'ant-design-vue'
 
 const formState = reactive<API.UserLoginRequest>({
   userAccount: '',
@@ -63,7 +63,7 @@ const handleSubmit = async (values: any) => {
 <style scoped>
 #userLoginPage {
   background: white;
-  max-width: 720px;
+  max-width: 540px;
   padding: 24px;
   margin: 24px auto;
 }

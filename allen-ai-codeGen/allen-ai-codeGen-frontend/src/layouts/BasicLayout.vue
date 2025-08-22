@@ -19,6 +19,9 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
 <style scoped>
 .basic-layout {
   background: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
@@ -26,5 +29,6 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
   padding: 0;
   background: none;
   margin: 0;
+  flex: 1;
 }
 </style>

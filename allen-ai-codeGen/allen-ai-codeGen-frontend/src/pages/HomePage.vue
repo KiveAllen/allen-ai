@@ -1,5 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main></main>
+  <main>
+
+    主页
+  </main>
 </template>

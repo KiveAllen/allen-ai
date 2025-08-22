@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { userRegister } from '@/api/userController.ts'
-import { useRouter } from 'vue-router'
-import { message } from 'ant-design-vue'
+import {reactive} from 'vue'
+import {userRegister} from '@/api/userController.ts'
+import {useRouter} from 'vue-router'
+import {message} from 'ant-design-vue'
 
 const formState = reactive<API.UserRegisterRequest>({
   userAccount: '',
@@ -84,7 +84,7 @@ const handleSubmit = async (values: any) => {
 <style scoped>
 #userRegisterPage {
   background: white;
-  max-width: 720px;
+  max-width: 540px;
   padding: 24px;
   margin: 24px auto;
 }
