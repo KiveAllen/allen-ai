@@ -45,9 +45,18 @@ public class WebSearchTool {
                 JSONObject tmpJSONObject = (JSONObject) obj;
                 return tmpJSONObject.toString();
             }).collect(Collectors.joining(","));
-            return result;
+            
+            // 返回格式化的JSON结果，便于前端处理
+            JSONObject resultObject = new JSONObject();
+            resultObject.set("type", "search");
+            resultObject.set("query", query);
+            resultObject.set("results", new JSONArray(objects));
+            return resultObject.toString();
         } catch (Exception e) {
-            return "Error searching Baidu: " + e.getMessage();
+            JSONObject errorObject = new JSONObject();
+            errorObject.set("type", "error");
+            errorObject.set("message", "Error searching Baidu: " + e.getMessage());
+            return errorObject.toString();
         }
     }
 }

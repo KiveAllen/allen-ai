@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import reactor.core.publisher.Flux;
@@ -36,7 +37,7 @@ public class AiController {
      * @return
      */
     @GetMapping("/love_app/chat/sync")
-    public String doChatWithLoveAppSync(String message, String chatId) {
+    public String doChatWithLoveAppSync(@RequestParam("message") String message, @RequestParam("chatId") String chatId) {
         return loveApp.doChat(message, chatId);
     }
 
@@ -48,7 +49,7 @@ public class AiController {
      * @return
      */
     @GetMapping(value = "/love_app/chat/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> doChatWithLoveAppSSE(String message, String chatId) {
+    public Flux<String> doChatWithLoveAppSSE(@RequestParam("message") String message, @RequestParam("chatId") String chatId) {
         return loveApp.doChatByStream(message, chatId);
     }
 
@@ -60,7 +61,7 @@ public class AiController {
      * @return
      */
     @GetMapping(value = "/love_app/chat/server_sent_event")
-    public Flux<ServerSentEvent<String>> doChatWithLoveAppServerSentEvent(String message, String chatId) {
+    public Flux<ServerSentEvent<String>> doChatWithLoveAppServerSentEvent(@RequestParam("message") String message, @RequestParam("chatId") String chatId) {
         return loveApp.doChatByStream(message, chatId)
                 .map(chunk -> ServerSentEvent.<String>builder()
                         .data(chunk)
@@ -75,7 +76,7 @@ public class AiController {
      * @return
      */
     @GetMapping(value = "/love_app/chat/sse_emitter")
-    public SseEmitter doChatWithLoveAppServerSseEmitter(String message, String chatId) {
+    public SseEmitter doChatWithLoveAppServerSseEmitter(@RequestParam("message") String message, @RequestParam("chatId") String chatId) {
         // 创建一个超时时间较长的 SseEmitter
         SseEmitter sseEmitter = new SseEmitter(180000L); // 3 分钟超时
         // 获取 Flux 响应式数据流并且直接通过订阅推送给 SseEmitter
@@ -98,7 +99,7 @@ public class AiController {
      * @return
      */
     @GetMapping("/manus/chat")
-    public SseEmitter doChatWithManus(String message) {
+    public SseEmitter doChatWithManus(@RequestParam("message") String message) {
         AllenManus allenManus = new AllenManus(allTools, dashscopeChatModel);
         return allenManus.runStream(message);
     }
